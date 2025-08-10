@@ -1,101 +1,97 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/* === Tailwind directives (ต้องอยู่บนสุด) === */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-#root {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
+/* === Global ที่ปลอดภัยกับแดชบอร์ด === */
 :root { color-scheme: light dark; }
 * { box-sizing: border-box; }
-body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans", sans-serif; }
+html, body { height: 100%; }
 
-#app-wrap { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+/* ใช้ฟอนต์/พื้นหลังกลาง ๆ */
+body { margin: 0; font-family: ui-sans-serif, system-ui, Segoe UI, Roboto, "Noto Sans Thai", sans-serif; }
 
-.sidebar { padding: 20px; border-right: 1px solid #4443; }
-.brand { margin: 0 0 16px; font-weight: 800; letter-spacing: .3px; }
-.nav { display: grid; gap: 8px; }
-.nav a { padding: 10px 12px; border-radius: 10px; text-decoration: none; }
-.nav a.active { background: #7c3aed22; outline: 1px solid #7c3aed55; }
+/* ❌ ลบของเดิมที่ชน layout:
+   - body { display:flex; place-items:center; }
+   - #root { max-width:720px; margin:auto; text-align:center; }
+   - h1/button สไตล์สาธิตของ Vite
+*/
 
+/* === CSS โครงแดชบอร์ด (ของปอนด์) === */
+#app-wrap {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0f0f12, #15161a);
+}
+
+/* Sidebar */
+.sidebar {
+  padding: 20px 16px;
+  border-right: 1px solid #ffffff14;
+  backdrop-filter: blur(4px);
+  position: sticky; top: 0; height: 100vh;
+}
+.brand {
+  margin: 4px 8px 16px;
+  font-weight: 800; letter-spacing: .2px; font-size: 20px;
+}
+.nav { display: grid; gap: 6px; }
+.nav a {
+  padding: 10px 12px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  opacity: .9;
+  transition: transform .06s ease, background .2s ease, opacity .2s ease;
+}
+.nav a:hover { background: #8b5cf61a; opacity: 1; transform: translateY(-1px); }
+.nav a.active { background: #8b5cf633; outline: 1px solid #8b5cf655; }
+
+/* Main */
 .content { display: grid; grid-template-rows: auto 1fr auto; }
-.topbar { padding: 16px 24px; border-bottom: 1px solid #4443; }
+.topbar {
+  padding: 16px 24px;
+  border-bottom: 1px solid #ffffff14;
+  position: sticky; top: 0; backdrop-filter: blur(4px);
+}
 .title { margin: 0; font-size: 20px; font-weight: 700; }
-.page { padding: 24px; }
 
-.cards { display: grid; gap: 16px; grid-template-columns: repeat(3, minmax(0,1fr)); }
-.card { padding: 16px; border: 1px solid #4443; border-radius: 16px; }
-.card .num { font-size: 28px; font-weight: 800; margin-top: 6px; }
+.page { padding: 24px; max-width: 1200px; margin: 0 auto; width: 100%; }
 
-.list { margin: 12px 0 0; padding-left: 18px; }
+/* Cards */
+.cards {
+  display: grid; gap: 16px;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  margin-top: 12px;
+}
+.card {
+  padding: 18px;
+  border: 1px solid #ffffff14;
+  border-radius: 16px;
+  background: #ffffff07;
+  box-shadow: 0 6px 18px #00000033;
+  transition: transform .08s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 10px 22px #00000044; border-color: #8b5cf644; }
+.card strong { display: block; opacity: .8; font-weight: 600; }
+.card .num { font-size: 32px; font-weight: 900; margin-top: 6px; letter-spacing: .5px; }
+
+/* Lists & rows */
+.list { margin: 12px 0 0; padding-left: 18px; line-height: 1.8; opacity: .95; }
 .row { display: grid; grid-template-columns: 160px 1fr; align-items: center; gap: 12px; margin: 12px 0; }
+.footer { padding: 16px 24px; border-top: 1px solid #ffffff14; font-size: 12px; opacity: .7; }
 
-.footer { padding: 16px 24px; border-top: 1px solid #4443; font-size: 12px; opacity: .7; }
+/* Responsive */
+@media (max-width: 1024px) {
+  #app-wrap { grid-template-columns: 200px 1fr; }
+}
+@media (max-width: 768px) {
+  #app-wrap { grid-template-columns: 1fr; }
+  .sidebar { position: static; height: auto; border-right: none; border-bottom: 1px solid #ffffff14; }
+  .cards { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 520px) {
+  .cards { grid-template-columns: 1fr; }
+  .row { grid-template-columns: 1fr; gap: 8px; }
+}
