@@ -73,3 +73,29 @@ button:focus-visible {
   padding: 2rem;
   text-align: center;
 }
+
+:root { color-scheme: light dark; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans", sans-serif; }
+
+#app-wrap { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+
+.sidebar { padding: 20px; border-right: 1px solid #4443; }
+.brand { margin: 0 0 16px; font-weight: 800; letter-spacing: .3px; }
+.nav { display: grid; gap: 8px; }
+.nav a { padding: 10px 12px; border-radius: 10px; text-decoration: none; }
+.nav a.active { background: #7c3aed22; outline: 1px solid #7c3aed55; }
+
+.content { display: grid; grid-template-rows: auto 1fr auto; }
+.topbar { padding: 16px 24px; border-bottom: 1px solid #4443; }
+.title { margin: 0; font-size: 20px; font-weight: 700; }
+.page { padding: 24px; }
+
+.cards { display: grid; gap: 16px; grid-template-columns: repeat(3, minmax(0,1fr)); }
+.card { padding: 16px; border: 1px solid #4443; border-radius: 16px; }
+.card .num { font-size: 28px; font-weight: 800; margin-top: 6px; }
+
+.list { margin: 12px 0 0; padding-left: 18px; }
+.row { display: grid; grid-template-columns: 160px 1fr; align-items: center; gap: 12px; margin: 12px 0; }
+
+.footer { padding: 16px 24px; border-top: 1px solid #4443; font-size: 12px; opacity: .7; }
